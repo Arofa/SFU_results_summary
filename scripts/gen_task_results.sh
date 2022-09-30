@@ -11,7 +11,7 @@ file_arr=(\
 )
 
 pushd results
-echo "file_path, file_no, file_name, class, qp, resolution, scale, mAP" > ../results_${task}.csv
+echo "file_path, file_no, file_name, class, qp, resolution, scale, mAP" > ../${task}_results.csv
 for file in "${task}"/results_*; do  
 		f=$(basename $file)
 		res=$(echo ${f} | cut -d '_' -f4)
@@ -35,7 +35,7 @@ for file in "${task}"/results_*; do
 
 
 		echo "${file}, ${fdx}, ${fname}, ${class}, ${qp/"qp"/}, ${res}, ${scale}, $(head -n 1 ${file} | cut -d '=' -f2)" \
-		>> ../results_${task}.csv
+		>> ../${task}_results.csv
 done 
 popd
 
