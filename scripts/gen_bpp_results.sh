@@ -22,14 +22,14 @@ KristenAndSara_1280x720_60_val \
 
 # echo ${file_arr['BasketballPass_416x240']}
 pushd log
-echo "scale, idx, file, Bitrate, Y-PSNR, U-PSNR, V-PSNR, YUV-PSNR" >> ${tag}_bpp_psnr.csv
+echo "scale, idx, file, Bitrate, Y-PSNR, U-PSNR, V-PSNR, YUV-PSNR" >> ../${tag}_bpp_psnr.csv
 for scale in 100 75 50 25; do
     idx=0
     for file in ${file_arr[@]}; do
         for log_file in $(ls ${tag}_${scale}/${file}_qp*); do
             echo "$scale, $idx, $file," \
             $(sed -n "$(( $(wc -l < $log_file)-3 )) p" $log_file | \
-            awk '{print $3",", $4",", $5",", $6",", $7}') >> ${tag}_bpp_psnr.csv
+            awk '{print $3",", $4",", $5",", $6",", $7}') >> ../${tag}_bpp_psnr.csv
         done
         (( idx++ )) 
     done
